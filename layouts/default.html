@@ -4,10 +4,7 @@
     <title>{{ title }}</title>
     <meta name="description" content="{{ description }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" sizes="32x32" href="http://yorkshireinteractive.com/assets/ico/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="http://yorkshireinteractive.com/assets/ico/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="http://yorkshireinteractive.com/assets/ico/favicon-16x16.png">
-    <link rel="stylesheet" href="http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
     <link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700|Slabo+27px' rel='stylesheet' type='text/css'>
     <style>
@@ -123,17 +120,12 @@
 
       {{{ contents }}}
 
-      <a style="display:block;width:243px;margin:20px auto;text-align:center;font-size:14px;color:#282928;line-height:1.8" href="http://yorkshireinteractive.com">
-        an open source project by
-        <img src="images/yi-badge-243x41.png" alt="Yorkshire Interactive" width="243">
-      </a>
-
     </div>
 
 
-    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/run_prettify.min.js"></script>
-    <script src="http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
     <script src="scripts/chartist-goal-line.js"></script>
     <script>
       // Add nice styling to codez
@@ -157,7 +149,8 @@
         },
         plugins: [
           Chartist.plugins.ctGoalLine({
-            value: 14
+            value: 14,
+            label: 'Overall Average'
           })
         ]
       });
@@ -188,8 +181,9 @@
         },
         plugins: [
           Chartist.plugins.ctGoalLine({
-            value: 100,
-            axis: 'x'
+            value: 125,
+            axis: 'x',
+            label: 'Team Goal'
           })
         ]
       });
