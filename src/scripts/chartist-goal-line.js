@@ -28,11 +28,13 @@
 
   var defaultOptions = {
     // The class name so you can style the text
-    className: 'ct-goal-line',
+    className: 'ct-goal',
     // The axis to draw the line. y == vertical bars, x == horizontal
     axis: 'y',
     // What value the goal line should be drawn at
-    value: null
+    value: null,
+    // The text that will be displayed next to goal line
+    label: '',
   };
 
   Chartist.plugins = Chartist.plugins || {};
@@ -42,6 +44,7 @@
     return function ctGoalLine (chart) {
 
       chart.on('created', function(context) {
+	// Calculate position for goal line
         var projectTarget = {
           y: function (chartRect, bounds, value) {
             var targetLineY = chartRect.y1 - (chartRect.height() / bounds.max * value);
@@ -64,10 +67,31 @@
             }
           }
         };
+	// Calculate position for goal text
+        var textTarget = {
+          y: function (chartRect, bounds, value) {
+            var targetLineY = chartRect.y1 - (chartRect.height() / bounds.max * value);
+
+            return {
+              x: chartRect.x1 + 10,
+              y: targetLineY - 10,
+            }
+          },
+          x: function (chartRect, bounds, value) {
+            var targetLineX = chartRect.x1 + (chartRect.width() / bounds.max * value);
+
+            return {
+              x: targetLineX + 10,
+              y: chartRect.y2 + 10,
+            }
+          }
+        };
 
         var targetLine = projectTarget[options.axis](context.chartRect, context.bounds, options.value)
+        var targetText = textTarget[options.axis](context.chartRect, context.bounds, options.value)
+        context.svg.elem('line', targetLine, options.className + ' ct-goal-line');
+        context.svg.elem('text', targetText, options.className + ' ct-goal-text').text(options.label);
 
-        context.svg.elem('line', targetLine, options.className);
       });
     }
   }
